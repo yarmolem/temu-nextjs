@@ -13,7 +13,7 @@ interface CategoryItemProps {
 export const containerItemClassName =
   'flex w-full min-h-[calc(100dvh_-_50px_-_48px)]'
 
-const CategoryItem = memo((props: CategoryItemProps) => {
+const CategoryItem = (props: CategoryItemProps) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -51,6 +51,6 @@ const CategoryItem = memo((props: CategoryItemProps) => {
       <span className="text-4xl font-semibold">{props.category}</span>
     </div>
   )
-})
+}
 
-export default CategoryItem
+export default memo(CategoryItem)
