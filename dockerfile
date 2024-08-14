@@ -19,6 +19,8 @@ RUN \
   else yarn build; \
   fi
 
+EXPOSE 3000
+
 CMD \
   if [ -f yarn.lock ]; then yarn start; \
   elif [ -f package-lock.json ]; then npm run start; \
