@@ -41,7 +41,7 @@ const ProductCard = (props: ProductCardProps) => {
           <p className="line-through text-xs text-muted-foreground">63.99</p>
 
           <button
-            onClick={() => store.addToCart(props.data)}
+            onClick={() => store.addItem(props.data)}
             className="py-1 px-3 border border-foreground rounded-full ml-auto"
           >
             <ShoppingCartIcon className="w-4 h-4" />

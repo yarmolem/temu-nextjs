@@ -4,4 +4,5 @@ export interface IShoppingCardItem {
   id: string
   quantity: number
   product: IProduct
+  selected: boolean
 }

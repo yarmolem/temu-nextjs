@@ -22,10 +22,7 @@ const ShoppingCartButton = (props: ShoppingCartButtonProps) => {
   return (
     <>
       {!productInCart && (
-        <Button
-          className="w-full"
-          onClick={() => store.addToCart(props.product)}
-        >
+        <Button className="w-full" onClick={() => store.addItem(props.product)}>
           Añadir al carrito
         </Button>
       )}

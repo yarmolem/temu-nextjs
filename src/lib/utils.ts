@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
+import currencyJs from 'currency.js'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -32,4 +33,12 @@ export function evaluatePasswordStrength(password: string) {
     value,
     label: value < 3 ? 'Débil' : value < 4 ? 'Regular' : 'Fuerte'
   }
+}
+
+export function currencyFormatter(value: number) {
+  const options: currencyJs.Options = {
+    symbol: '$ '
+  }
+
+  return currencyJs(value, options).format()
 }
