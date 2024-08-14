@@ -1,7 +1,11 @@
+import './globals.css'
+
 import type { Metadata } from 'next'
 import { Montserrat as FontSans } from 'next/font/google'
-import './globals.css'
+
 import { cn } from '@/lib/utils'
+import { Navbar } from '@/components/layout/navbar'
+import AuthModal from '@/components/shared/auth.modal'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -19,14 +23,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body
         className={cn(
           'min-h-screen bg-muted font-sans antialiased',
           fontSans.variable
         )}
       >
-        <div className="max-w-sm mx-auto">{children}</div>
+        <div className="sm:max-w-sm mx-auto">
+          <Navbar className="sticky top-0 z-40" />
+          {children}
+        </div>
+
+        <AuthModal />
       </body>
     </html>
   )

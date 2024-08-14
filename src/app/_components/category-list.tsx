@@ -29,7 +29,7 @@ const CategoryList = (_props: CategoryListProps) => {
 
   return (
     <>
-      <nav>
+      <nav className="sticky top-[57px] z-40">
         <ul
           ref={listRef}
           className="flex relative max-w-[100dvw] overflow-x-auto bg-background border-b no-scroll-indicator"
@@ -64,7 +64,15 @@ const CategoryList = (_props: CategoryListProps) => {
         setApi={setCarouselApi}
         className="w-full min-h-[calc(100dvh_-_50px_-_48px)] max-w-screen"
         opts={{
-          watchDrag: true
+          watchDrag: (_, { target }) => {
+            const _target = target as HTMLElement
+            const key = 'data-ignore-carousel'
+
+            return !Boolean(
+              _target.getAttribute(key) ||
+                _target.parentElement?.getAttribute(key)
+            )
+          }
         }}
       >
         <CarouselContent>
