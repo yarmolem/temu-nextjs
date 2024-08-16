@@ -36,9 +36,16 @@ const Navbar = (props: NavbarProps) => {
           <span className="text-sm font-semibold">vestido de ...</span>
         </button>
 
-        <Button size="icon" variant="ghost">
-          <ListIcon />
-        </Button>
+        <Link
+          href="/categories"
+          className={cn(buttonVariants({ size: 'icon', variant: 'ghost' }))}
+        >
+          <ListIcon
+            className={cn(
+              pathname === '/categories' && 'fill-primary text-primary'
+            )}
+          />
+        </Link>
 
         <UserMenu />
         <Link

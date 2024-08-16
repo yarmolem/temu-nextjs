@@ -12,7 +12,7 @@ import CategoryItemAll from './category-item-all'
 import useListCategory from '@/hooks/use-list-category'
 
 import { cn } from '@/lib/utils'
-import { categories } from '@/data/categories'
+import { homeCategories } from '@/data/categories'
 
 interface CategoryListProps {}
 
@@ -34,7 +34,7 @@ const CategoryList = (_props: CategoryListProps) => {
           ref={listRef}
           className="flex relative max-w-[100dvw] overflow-x-auto bg-background border-b no-scroll-indicator"
         >
-          {categories.map((category, idx) => (
+          {homeCategories.map((category, idx) => (
             <li
               role="button"
               key={category}
@@ -76,7 +76,7 @@ const CategoryList = (_props: CategoryListProps) => {
         }}
       >
         <CarouselContent>
-          {categories.map((category, idx) => {
+          {homeCategories.map((category, idx) => {
             if (idx === 0) {
               return (
                 <CarouselItem key={category}>

@@ -1,4 +1,4 @@
-export const categories = [
+export const homeCategories = [
   'Todos',
   'Mujeres',
   'Joyas',
@@ -18,6 +18,41 @@ export const categories = [
   'Salud',
   'Mascotas',
   'Jardin'
+]
+
+export const categories = [
+  'Destacado',
+  'Hogar y cocina',
+  'Ropa de mujer',
+  'Deporte y aire libre',
+  'Mujer curvy',
+  'Juguetes',
+  'Calzado de mujer',
+  'Automotriz',
+  'Lencería y pijamas de mujer',
+  'Patio, césped y jardín',
+  'Ropa de hombre',
+  'Tecnología',
+  'Calzado de hombre',
+  'Negocios, Industria y Ciencia',
+  'Hombre de talla grande',
+  'Herramientas y hogar',
+  'Ropa interior y pijamas de hombre',
+  'Electrodomésticos',
+  'Joyería y accesorios',
+  'Teléfonos móviles y más',
+  'Belleza y salud',
+  'Hogar inteligente',
+  'Moda infantil',
+  'Instrumentos musicales',
+  'Calzado de niños',
+  'Bebé y maternidad',
+  'Bolsas y equipaje',
+  'Manualidades',
+  'Oficina y escuela',
+  'Salud y hogar',
+  'Mascotas',
+  'Ropa de playa'
 ]
 
 export const subCategories = [

@@ -37,7 +37,7 @@ export function evaluatePasswordStrength(password: string) {
 
 export function currencyFormatter(value: number) {
   const options: currencyJs.Options = {
-    symbol: '$ '
+    symbol: 'S/ '
   }
 
   return currencyJs(value, options).format()
