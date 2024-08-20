@@ -25,14 +25,11 @@ import { commitments } from '@/data/commitments'
 const ShoppingCartPage = () => {
   const store = useShoppingCart()
 
-  const total = useMemo(() => store.getTotal(store.cart), [store.cart])
-  const isAllSelected = useMemo(
-    () => store.isAllSelected(store.cart),
-    [store.cart]
-  )
+  const total = useMemo(() => store.getTotal(store.cart), [store])
+  const isAllSelected = useMemo(() => store.isAllSelected(store.cart), [store])
   const isSomeSelected = useMemo(
     () => store.isSomeSelected(store.cart),
-    [store.cart]
+    [store]
   )
 
   const isIndeterminate = store.cart.length > 0 && !isAllSelected

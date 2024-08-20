@@ -425,6 +425,7 @@ const CategoryFilterMenu = () => {
                 'De precios altos a bajos'
               ].map((tag) => (
                 <Button
+                  key={tag}
                   variant="outline"
                   className={cn(
                     'w-full border-none text-left justify-start text-muted-foreground',
