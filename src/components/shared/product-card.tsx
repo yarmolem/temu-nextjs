@@ -1,3 +1,5 @@
+'use client'
+
 import { IProduct } from '@/interface/product.types'
 import { cn } from '@/lib/utils'
 import { useShoppingCart } from '@/stores/shopping-cart.store'

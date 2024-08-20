@@ -1,40 +1,44 @@
 'use client'
 
+import Link from 'next/link'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { useToggle } from 'usehooks-ts'
 import {
   Blocks,
+  StarIcon,
   CheckIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  ShoppingCartIcon,
-  StarIcon
+  ShoppingCartIcon
 } from 'lucide-react'
 
+import slugify from 'slugify'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import {
   DropdownMenu,
-  DropdownMenuItem,
   DropdownMenuContent,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem
+  DropdownMenuRadioItem,
+  DropdownMenuRadioGroup
 } from '@/components/ui/dropdown-menu'
 
-import { cn, currencyFormatter } from '@/lib/utils'
-import { categories, subCategories } from '@/data/categories'
-import { useToggle } from 'usehooks-ts'
+import { cn } from '@/lib/utils'
+
 import { products } from '@/data/products'
+import { categories, subCategories } from '@/data/categories'
+
 import { useShoppingCart } from '@/stores/shopping-cart.store'
 
 const CategoriesPage = () => {
-  const [sort, setSort] = useState<string>('Destacado')
-  const [sortMenuOpen, toggleSortMenu, setSortMenuOpen] = useToggle()
-  const [selectedCategory, setSelectedCategory] = useState<string>('Destacado')
-
   const store = useShoppingCart()
+
+  const [sort, setSort] = useState<string>('featured')
+  const [sortMenuOpen, , setSortMenuOpen] = useToggle()
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    categories?.[0].slug
+  )
 
   return (
     <>
@@ -55,22 +59,23 @@ const CategoriesPage = () => {
         <div className="w-full h-full overflow-y-auto bg-muted no-scroll-indicator">
           {categories.map((category) => (
             <button
-              key={category}
+              key={category.slug}
+              onClick={() => setSelectedCategory(category.slug)}
               className={cn('py-3 pr-2 text-left w-full transition-colors', {
-                'font-semibold bg-background': category === selectedCategory
+                'font-semibold bg-background':
+                  category.slug === selectedCategory
               })}
-              onClick={() => setSelectedCategory(category)}
             >
               <p
                 className={cn(
                   'text-xs border-l-4 border-l-transparent pl-1 transition-colors hyphens-auto font-medium text-pretty text-muted-foreground',
                   {
                     'font-semibold text-foreground border-l-primary':
-                      category === selectedCategory
+                      category.slug === selectedCategory
                   }
                 )}
               >
-                {category}
+                {category.title}
               </p>
             </button>
           ))}
@@ -81,28 +86,39 @@ const CategoriesPage = () => {
           <p className="text-sm font-semibold">Comprar por categoría</p>
 
           <div className="grid grid-cols-3 gap-x-6 gap-y-3">
-            <div className="w-full">
-              <div className="w-full aspect-square rounded-full mb-1 bg-muted grid place-items-center">
-                <Blocks className="w-7 h-7" />
-              </div>
-              <p className="text-xs text-center font-medium hyphens-auto text-pretty">
-                Ver todo
-              </p>
-            </div>
+            {selectedCategory !== 'Destacado' && (
+              <Link
+                className="w-full"
+                href={`/categories/${slugify(selectedCategory, {
+                  lower: true
+                })}`}
+              >
+                <div className="w-full aspect-square rounded-full mb-1 bg-muted grid place-items-center">
+                  <Blocks className="w-7 h-7" />
+                </div>
+                <p className="text-xs text-center font-medium hyphens-auto text-pretty">
+                  Ver todo
+                </p>
+              </Link>
+            )}
 
             {subCategories.map((subCategory) => (
-              <div key={subCategory} className="w-full">
+              <Link
+                className="w-full"
+                key={subCategory.slug}
+                href={`/categories/${subCategory.slug}`}
+              >
                 <Image
                   width={104}
                   height={104}
-                  alt={subCategory}
+                  alt={subCategory.title}
                   src="https://placehold.co/104x104.png"
                   className="w-full aspect-square rounded-full mb-1"
                 />
                 <p className="text-xs text-center font-medium hyphens-auto text-pretty">
-                  {subCategory}
+                  {subCategory.title}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -146,7 +162,7 @@ const CategoriesPage = () => {
             <p className="text-xs font-medium">Artículos en tendencia</p>
 
             <DropdownMenu open={sortMenuOpen} onOpenChange={setSortMenuOpen}>
-              <DropdownMenuTrigger>
+              <DropdownMenuTrigger asChild>
                 <button className="flex items-center text-xs text-muted-foreground">
                   Ordenar por
                   <ChevronDownIcon
@@ -193,10 +209,10 @@ const CategoriesPage = () => {
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="absolute bottom-0 right-0 rounded-none"
                     onClick={() => store.addItem(product)}
+                    className="absolute bottom-0 right-0 rounded-none"
                   >
-                    <ShoppingCartIcon />
+                    <ShoppingCartIcon className="text-white" />
                   </Button>
                 </div>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import Image from 'next/image'
 import React, { memo, useState } from 'react'
 import {
@@ -10,12 +11,12 @@ import {
   ChevronRightIcon
 } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
 import ProductCard from '@/components/shared/product-card'
+import { Button, buttonVariants } from '@/components/ui/button'
 
 import { cn } from '@/lib/utils'
 import { products } from '@/data/products'
-import { subCategories } from '@/data/categories'
+import { categories } from '@/data/categories'
 
 const CategoryItemAll = () => {
   const [isLoading] = useState(false)
@@ -98,19 +99,23 @@ const CategoryItemAll = () => {
       </section>
 
       <section className="w-full bg-background p-3">
-        <Button
-          variant="link"
-          className="text-foreground pt-0 px-0 font-semibold"
+        <Link
+          href="/categories"
+          className={cn(
+            buttonVariants({ variant: 'link' }),
+            'text-foreground pt-0 px-0 font-semibold'
+          )}
         >
           Categorías <ChevronRightIcon className="w-5 h-5" />
-        </Button>
+        </Link>
 
         <ul className="max-w-[100dvw] overflow-x-auto no-scroll-indicator flex items-start">
-          {subCategories.map((subCategory) => (
-            <button
-              key={subCategory}
+          {categories.map((category) => (
+            <Link
+              key={category.title}
               data-ignore-carousel="true"
               className="min-w-[25%] max-w-[25%] flex items-center flex-col p-1"
+              href={`/categories/${category.slug}`}
             >
               <div
                 data-ignore-carousel="true"
@@ -118,7 +123,7 @@ const CategoryItemAll = () => {
               >
                 <Image
                   fill
-                  alt={subCategory}
+                  alt={category.title}
                   className="rounded-full"
                   src="https://placehold.co/68x68.png"
                 />
@@ -132,9 +137,9 @@ const CategoryItemAll = () => {
                 Desde S/ 6.68
               </span>
               <p className="text-center text-xs leading-4 max-w-[84px] hyphens-auto font-semibold -translate-y-1">
-                {subCategory}
+                {category.title}
               </p>
-            </button>
+            </Link>
           ))}
         </ul>
       </section>

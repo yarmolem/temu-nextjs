@@ -42,3 +42,16 @@ export function currencyFormatter(value: number) {
 
   return currencyJs(value, options).format()
 }
+
+export function scrollToElementWithOffset(id: string, offset: number = 0) {
+  const element = document.getElementById(id)
+  if (element) {
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - offset
+
+    window.scrollTo({
+      behavior: 'smooth',
+      top: offsetPosition
+    })
+  }
+}

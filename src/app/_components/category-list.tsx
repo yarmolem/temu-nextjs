@@ -37,9 +37,9 @@ const CategoryList = (_props: CategoryListProps) => {
           {homeCategories.map((category, idx) => (
             <li
               role="button"
-              key={category}
+              key={category.title}
               className="py-3 px-[11px] flex-shrink-0 cursor-pointer"
-              id={`item-${category}`}
+              id={`item-${category.title}`}
               ref={handleLayout}
               onClick={() => handleClick(idx)}
             >
@@ -48,7 +48,7 @@ const CategoryList = (_props: CategoryListProps) => {
                   'text-foreground': idx === activeIndex
                 })}
               >
-                {category}
+                {category.title}
               </h2>
             </li>
           ))}
@@ -79,16 +79,16 @@ const CategoryList = (_props: CategoryListProps) => {
           {homeCategories.map((category, idx) => {
             if (idx === 0) {
               return (
-                <CarouselItem key={category}>
+                <CarouselItem key={category.title}>
                   <CategoryItemAll />
                 </CarouselItem>
               )
             }
 
             return (
-              <CarouselItem key={category}>
+              <CarouselItem key={category.title}>
                 <CategoryItem
-                  category={category}
+                  category={category.title}
                   enabled={slideViewed.includes(idx)}
                 />
               </CarouselItem>
