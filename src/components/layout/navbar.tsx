@@ -31,10 +31,17 @@ const Navbar = (props: NavbarProps) => {
           <Logo />
         </Link>
 
-        <button className="flex items-center gap-2 bg-muted text-muted-foreground py-1 px-3 rounded-full">
+        <Link
+          href="/search"
+          className={cn(
+            buttonVariants({ variant: 'ghost' }),
+            'py-1 px-3 rounded-full',
+            'flex items-center gap-2 bg-muted text-muted-foreground'
+          )}
+        >
           <SearchIcon />
           <span className="text-sm font-semibold">vestido de ...</span>
-        </button>
+        </Link>
 
         <Link
           href="/categories"

@@ -1,25 +1,23 @@
 'use client'
 
-import Image from 'next/image'
+import Link from 'next/link'
 import React, { Fragment, useMemo } from 'react'
 import {
+  TruckIcon,
   AlertCircleIcon,
   ChevronRightIcon,
-  MinusIcon,
-  PlusIcon,
-  ShoppingCartIcon,
-  TruckIcon
+  ShoppingCartIcon
 } from 'lucide-react'
 
 import { Separator } from '@/components/ui/separator'
 import { CustomCheckbox } from '@/components/ui/custom-checkbox'
 
-import { cn, currencyFormatter } from '@/lib/utils'
+import { currencyFormatter } from '@/lib/utils'
 import { useShoppingCart } from '@/stores/shopping-cart.store'
 import ShoppingCartMenu from './_components/shopping-cart-menu'
-import ShoppingCartProductCard from '@/components/shared/shopping-cart-product-card'
 import { Button, buttonVariants } from '@/components/ui/button'
-import Link from 'next/link'
+import ShoppingCartProductCard from '@/components/shared/shopping-cart-product-card'
+
 import { commitments } from '@/data/commitments'
 
 const ShoppingCartPage = () => {
